@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumpinee Brawler PS2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="min-h-screen bg-black flex items-center justify-center font-mono overflow-hidden select-none text-white">
+
+    <div class="relative w-full max-w-4xl aspect-video bg-gray-900 shadow-2xl overflow-hidden border-8 border-gray-800 rounded-2xl crt-shadow">
+        
+        <div class="scanlines absolute inset-0 pointer-events-none z-50 opacity-10"></div>
+
+        <div id="screen-boot" class="screen absolute inset-0 flex flex-col items-center justify-center bg-black">
+            <div class="text-4xl font-bold tracking-widest text-blue-500 animate-pulse mb-4" style="text-shadow: 0 0 10px blue;">
+                SONY
+            </div>
+            <div class="text-xl font-bold tracking-widest text-gray-300">
+                Computer Entertainment
+            </div>
+        </div>
+
+        <div id="screen-menu" class="screen hidden absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-90">
+            <h1 class="text-6xl font-black mb-2 text-red-600 tracking-tighter" style="text-shadow: 4px 4px 0 #fff, 0 0 20px red;">
+                LUMPINEE
+            </h1>
+            <h2 class="text-3xl font-bold mb-12 text-blue-500 tracking-widest" style="text-shadow: 2px 2px 0 #fff;">
+                BRAWLER
+            </h2>
+            <button id="btn-start" class="px-8 py-3 text-2xl font-bold border-4 border-white hover:bg-white hover:text-black transition-colors animate-pulse">
+                PRESS START
+            </button>
+            <div class="absolute bottom-4 text-xs text-gray-500">
+                © 2026 ANALYST GAMING STUDIO. NOT FOR CHILDREN.
+            </div>
+        </div>
+
+        <div id="screen-select" class="screen hidden absolute inset-0 flex flex-col p-8 bg-gray-900">
+            <h2 class="text-3xl font-bold text-center mb-8 text-yellow-400">เลือกนักชกฝั่งแดง (Player 1)</h2>
+            <div id="fighter-grid" class="grid grid-cols-2 gap-6 h-full">
+                </div>
+            <div class="mt-4 text-center text-gray-400">วิธีเล่น: W A S D เดิน | J ต่อย | K เตะ</div>
+        </div>
+
+        <div id="screen-intro" class="screen hidden absolute inset-0 flex flex-col items-center justify-center bg-black relative overflow-hidden">
+            <div class="absolute inset-0 bg-blue-900 opacity-20 animate-pulse"></div>
+            <h2 class="text-4xl font-bold mb-8 text-yellow-400 z-10 animate-bounce">ศึกแชมป์ชนแชมป์ ลุมพินีสเตเดียม!</h2>
+            
+            <div class="flex w-full justify-around items-center z-10">
+                <div class="text-center animate-slide-in-left">
+                    <h3 class="text-2xl text-red-500 font-black">มุมแดง</h3>
+                    <div id="intro-p1-name" class="text-5xl font-bold mt-2"></div>
+                    <div id="intro-p1-alias" class="text-xl text-gray-400 mt-2"></div>
+                </div>
+                
+                <div class="text-5xl font-black text-gray-600 italic">VS</div>
+                
+                <div class="text-center animate-slide-in-right">
+                    <h3 class="text-2xl text-blue-500 font-black">มุมน้ำเงิน</h3>
+                    <div id="intro-p2-name" class="text-5xl font-bold mt-2"></div>
+                    <div id="intro-p2-alias" class="text-xl text-gray-400 mt-2"></div>
+                </div>
+            </div>
+
+            <button id="btn-fight" class="mt-16 px-12 py-4 text-3xl font-black bg-red-600 hover:bg-red-500 rounded-sm z-10 transition-all border-4 border-red-800">
+                เริ่มชก!
+            </button>
+        </div>
+
+        <canvas id="gameCanvas" width="896" height="504" class="screen hidden absolute inset-0 w-full h-full" style="image-rendering: pixelated;"></canvas>
+
+        <div id="screen-round-end" class="screen hidden absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 z-20">
+            <h2 id="round-end-title" class="text-6xl font-black text-yellow-400 mb-8">หมดยก</h2>
+            <div class="flex gap-8 text-2xl mb-8">
+                <div id="round-end-p1-hp" class="text-red-400">P1 HP: </div>
+                <div id="round-end-p2-hp" class="text-blue-400">COM HP: </div>
+            </div>
+            <button id="btn-next-round" class="px-8 py-4 bg-yellow-600 hover:bg-yellow-500 text-2xl font-bold rounded-sm text-black">
+                ลุยต่อยกต่อไป
+            </button>
+        </div>
+
+        <div id="screen-game-over" class="screen hidden absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-90 z-20">
+            <h2 class="text-6xl font-black text-red-500 mb-4 animate-pulse">K.O.!!</h2>
+            <h3 class="text-4xl font-bold mb-8">
+                ผู้ชนะคือ: <span id="game-winner" class="text-yellow-400"></span>
+            </h3>
+            <button id="btn-reset" class="px-8 py-4 border-2 border-white hover:bg-white hover:text-black text-2xl font-bold transition-all">
+                กลับสู่หน้าหลัก
+            </button>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
